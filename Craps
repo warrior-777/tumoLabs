@@ -3,6 +3,11 @@ import random
 
 # checking win/lose
 def checkWin(res):
+  # print(f"The sum of dice is {num1} + {num2} = {result}")
+  # a = input("Do you want to continue? y/n: ")
+  # if a != 'y':
+    
+  
   if res in winNums:
     print("You win")
     return
@@ -13,36 +18,69 @@ def checkWin(res):
   
   if res in goalNums:
     goal = res
-    print(f"Now your goal number is {res}")
+    a = input("Do you want to continue? y/n: ")
+    
+    if a != 'y':
+      return
+    
+    print(f"Now your goal number is {goal}")
+    
     num1 = random.choice(nums)
     num2 = random.choice(nums)
-    res = int(input(f"The sum of dice is {num1} + {num2} = "))
+    res = num1 + num2;
+    print(f"The sum of dice is {num1} + {num2} = {res}")
+    a = input("Do you want to continue? y/n: ")
     
-    if res in winNums:
+    if a != 'y':
+      return
+    
+    if res == winNums[0]:
       print("You lose")
+      return
+  
+    if res == goal:
+      print("You win")
       return
     
     while True:
       num1 = random.choice(nums)
       num2 = random.choice(nums)
-      res = int(input(f"The sum of dice is {num1} + {num2} = "))
+      res = num1 + num2;
       
-      if res in winNums:
+      print(f"The sum of dice is {num1} + {num2} = {res}")
+      a = input("Do you want to continue? y/n: ")
+    
+      if a != 'y':
+        return
+      
+      # print(f"Now your goal number is {res}")
+      
+      if res == winNums[0]:
         print("You lose")
         return
       if res is goal:
         num1 = random.choice(nums)
         num2 = random.choice(nums)
-        res = int(input(f"The sum of dice is {num1} + {num2} = "))
+        res = num1 + num2;
+        print(f"The sum of dice is {num1} + {num2} = {res}")
+        a = input("Do you want to continue? y/n: ")
+    
+        if a != 'y':
+          return
         
-        if res in winNums:
+        if res == goal:
           print("You win")
           return
         if res in craps:
           print("You lose")
           return
-        goal = res
-        print(f"Now your goal number is {res}")
+        else:
+          goal = res
+          print(f"Now your goal number is {goal}")
+          a = input("Do you want to continue? y/n: ")
+    
+          if a != 'y':
+            return
       
 winNums:int = [7, 11]
 craps:int = [2, 3, 12]
@@ -51,6 +89,7 @@ nums:int = [1, 2, 3, 4, 5, 6]
 
 num1:int = random.choice(nums)
 num2:int = random.choice(nums)
-result:int = int(input(f"The sum of dice is {num1} + {num2} = "))
+result:int = num1 + num2
+print(f"The sum of dice is {num1} + {num2} = {result}")
 
 checkWin(result)
